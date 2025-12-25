@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="main.js" defer></script>
+    <title>Modern Art Generator</title>
+  </head>
+  <body class="flex items-center justify-center">
+    <div
+      class="container w-2/3 flex flex-col items-center justify-center mx-auto bg-gray-100 p-4 rounded-3xl p-10"
+    >
+      <h1 class="font-bold font-sans text-4xl text-gray-700 mb-4">
+        Modern Art Generator
+      </h1>
+      <h4 class="font-light italic font-sans text-xl text-gray-700 mb-8">
+        Generate your own modern art piece with a click of a button!
+      </h4>
+      <div
+        id="art-container"
+        class="w-3/4 min-h-fit h-96 hidden flex items-center justify-center shadow-2xl bg-white rounded-3xl mb-8"
+      >
+        <img id="art-image" src="" class="w-full h-auto object-contain" alt="Modern Art Piece" />
+      </div>
+      <button
+        id="generate-button"
+        class="bg-blue-500 cursor-pointer hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >
+        Generate Art
+      </button>
+    </div>
+  </body>
+</html>
