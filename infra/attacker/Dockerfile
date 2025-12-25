@@ -11,4 +11,3 @@ RUN go get . && \
 FROM scratch
 
 COPY --from=builder /app/attacker /attacker
-
