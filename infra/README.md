@@ -7,13 +7,13 @@
 To install the necessary packages, run the following commands:
 
 ```bash
-ubuntu@server:~/HTTP-2-Rapid-Reset-DDos/infra$ ./install.sh
+./install.sh
 ```
 
 To change the default installation directory, you can modify the `INSTALL_DIR` variable like so:
 
 ```bash
-ubuntu@server:~/HTTP-2-Rapid-Reset-DDos/infra$ INSTALL_DIR=/custom/path ./install.sh
+INSTALL_DIR=/custom/path ./install.sh
 ```
 
 ## Usage
@@ -21,20 +21,21 @@ ubuntu@server:~/HTTP-2-Rapid-Reset-DDos/infra$ INSTALL_DIR=/custom/path ./instal
 To start the infrastructure, run the following commands:
 
 ```bash
-ubuntu@server:~/HTTP-2-Rapid-Reset-DDos/infra$ source ~/.containernet/containernet/venv/bin/activate
-(venv) ubuntu@server:~/HTTP-2-Rapid-Reset-DDos/infra$ sudo -E env PATH=$PATH ./topo.py
-```
-
-In another terminal, you can see the docker containers running and various statistics using:
-
-```bash
-ubuntu@server:~$ sudo ctop
+source ~/.containernet/containernet/venv/bin/activate
+sudo -E env PATH=$PATH ./topo.py
 ```
 
 To start the attack, execute the following command in the attacker container:
 
 ```bash
-root@attacker:/# ./attacker -requests=10000  -url  https://modern.art/api  -wait=100  -delay=10 -concurrency=5
+./attacker -url='https://modern.art:443/api' -requests=500000
+```
+
+After a few moments, when you try to access the website using `curl`, it becomes unresponsive.
+
+```
+root@attacker:/attacker# curl -k https://modern.art/
+curl: (28) SSL connection timeout
 ```
 
 To stop the infrastructure, simply enter `exit` in the terminal where `topo.py` is running.
