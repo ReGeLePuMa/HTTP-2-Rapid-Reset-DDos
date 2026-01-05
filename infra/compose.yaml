@@ -1,0 +1,39 @@
+services:
+  attacker:
+    build: ./attacker
+    depends_on:
+      - frontend
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    networks:
+      frontend:
+    command: /bin/bash
+
+  frontend:
+    build: ./frontend
+    restart: always
+    depends_on:
+      - backend
+    networks:
+      frontend:
+        aliases:
+          - modern.art
+      backend:
+    ports:
+      - "80:80"
+      - "443:443"
+    command: nginx -g 'daemon off;'
+
+  backend:
+    build: ./backend
+    restart: always
+    networks:
+      backend:
+        aliases:
+          - api.modern.art
+    command: gunicorn main:app -k uvicorn.workers.UvicornWorker -b 0.0.0.0:5000
+
+networks:
+  frontend:
+  backend:
