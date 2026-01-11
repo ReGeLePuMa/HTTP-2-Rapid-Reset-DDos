@@ -1,4 +1,4 @@
-DIRS := $(shell find -maxdepth 1 -mindepth 1 -type d -exec basename {} \;)
+DIRS := $(shell find -maxdepth 1 -mindepth 1 -type d ! -name ".*" -exec basename {} \;)
 
 .PHONY: build clean $(DIRS)
 
